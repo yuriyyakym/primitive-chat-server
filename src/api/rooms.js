@@ -25,8 +25,8 @@ export default ({ state }) => {
   });
 
   router.get('/:roomId', (req, res) => {
-    const { roomId, from } = req.query;
-    const room = selectRoomById(Number(roomId));
+    const { roomId, from } = req.params;
+    const room = selectRoomById(state, Number(roomId));
 
     if(unknownRoomGuard(room, res)) {
       return;
@@ -35,10 +35,32 @@ export default ({ state }) => {
     res.send(room);
   });
 
+  router.get('/:roomId/messages', (req, res) => {
+    const { roomId, from } = req.params;
+    const room = selectRoomById(state, Number(roomId));
+
+    if(unknownRoomGuard(room, res)) {
+      return;
+    }
+
+    res.send(room.messages);
+  });
+
+  router.get('/:roomId/usersIds', (req, res) => {
+    const { roomId, from } = req.params;
+    const room = selectRoomById(state, Number(roomId));
+
+    if(unknownRoomGuard(room, res)) {
+      return;
+    }
+
+    res.send(room.usersIds);
+  });
+
   router.post('/:roomId/join', (req, res) => {
     const { roomId } = req.query;
     const userId = req.session.user.id;
-    const room = selectRoomById(Number(roomId));
+    const room = selectRoomById(state, Number(roomId));
 
     if(unknownRoomGuard(room, res)) {
       return;
@@ -54,7 +76,7 @@ export default ({ state }) => {
   router.post('/:roomId/leave', (req, res) => {
     const { roomId } = req.query;
     const userId = req.session.user.id;
-    const room = selectRoomById(Number(roomId));
+    const room = selectRoomById(state, Number(roomId));
 
     if(unknownRoomGuard(room, res)) {
       return;
@@ -68,7 +90,7 @@ export default ({ state }) => {
     const { roomId } = req.query;
     const { text } = req.body;
     const userId = req.session.user.id;
-    const room = selectRoomById(Number(roomId));
+    const room = selectRoomById(state, Number(roomId));
 
     if(unknownRoomGuard(room, res)) {
       return;
