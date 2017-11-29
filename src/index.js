@@ -12,6 +12,11 @@ import config from './config.json';
 const app = express();
 app.server = http.createServer(app);
 
+app.use(cors({
+  origin: [ 'http://localhost:3000' ],
+  credentials: true
+}));
+
 app.use(session({
   secret: 's ndfkjvn nsdfjivn',
   saveUninitialized: true,
@@ -19,10 +24,6 @@ app.use(session({
 }));
 
 app.use(morgan('dev'));
-
-app.use(cors({
-  exposedHeaders: config.corsHeaders
-}));
 
 app.use(bodyParser.json({
   limit : config.bodyLimit
