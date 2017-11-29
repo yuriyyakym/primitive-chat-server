@@ -1,9 +1,12 @@
-export let initialState = {
+export default {
   users: [],
   privateMessages: [],
   rooms: [
-    name: 'General',
-    usersIds: [],
-    messages: []
-  }
+    {
+      id: 0,
+      name: 'General',
+      usersIds: [],
+      messages: []
+    }
+  ]
 };

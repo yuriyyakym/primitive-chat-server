@@ -1,4 +1,0 @@
-{
-  name: String
-  messages: Array
-}

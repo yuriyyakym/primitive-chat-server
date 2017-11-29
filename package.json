@@ -26,13 +26,15 @@
   "author": "Jason Miller <jason@developit.ca>",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.13.3",
+    "body-parser": "^1.18.2",
     "compression": "^1.5.2",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "express-session": "^1.15.6",
     "lodash": "^4.17.4",
     "morgan": "^1.8.0",
-    "resource-router-middleware": "^0.6.0"
+    "resource-router-middleware": "^0.6.0",
+    "save": "^2.3.1"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
